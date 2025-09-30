@@ -21,17 +21,15 @@ fun FaceAvatarScreen() {
     val showNose = remember { mutableStateOf(true) }
     val showEyebrows = remember { mutableStateOf(true) }
     val showMouth = remember { mutableStateOf(true) }
-    val showBeard = remember { mutableStateOf(true) }
+    val showEyes = remember { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween // Mendorong Checkbox ke bawah
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Bagian 1: Tampilan Avatar
-        // Box digunakan untuk menumpuk beberapa gambar di atas satu sama lain.
         Box(
             modifier = Modifier
                 .weight(1f) // Memberi ruang fleksibel untuk avatar
@@ -40,32 +38,36 @@ fun FaceAvatarScreen() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.face_0004),
-                contentDescription = "Body"
+                contentDescription = "Body",
+                modifier = Modifier.offset(y = 120.dp)
             )
-            Image(
-                painter = painterResource(id = R.drawable.face_0003),
-                contentDescription = "Eyes",
-                modifier = Modifier.offset(y = 120.dp) // Sesuaikan posisi jika perlu
-            )
+            if (showEyes.value) {
+                Image(
+                    painter = painterResource(id = R.drawable.face_0003),
+                    contentDescription = "Eyes",
+                    modifier = Modifier.offset(y = 310.dp) // Sesuaikan posisi jika perlu
+                )
+            }
+
             if (showNose.value) {
                 Image(
                     painter = painterResource(id = R.drawable.face_0002),
-                    contentDescription = "Hair",
-                    modifier = Modifier.offset(y = 20.dp)
+                    contentDescription = "Nose",
+                    modifier = Modifier.offset(y = 370.dp)
                 )
             }
             if (showEyebrows.value) {
                 Image(
                     painter = painterResource(id = R.drawable.face_0001),
                     contentDescription = "Eyebrows",
-                    modifier = Modifier.offset(y = 95.dp)
+                    modifier = Modifier.offset(y = 300.dp)
                 )
             }
             if (showMouth.value) {
                 Image(
                     painter = painterResource(id = R.drawable.face_0000),
-                    contentDescription = "Moustache",
-                    modifier = Modifier.offset(y = 150.dp)
+                    contentDescription = "Mouth",
+                    modifier = Modifier.offset(y = 420.dp)
                 )
             }
         }
@@ -92,7 +94,7 @@ fun FaceAvatarScreen() {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 LabeledCheckbox(label = "Mulut", state = showMouth)
-                LabeledCheckbox(label = "Janggut", state = showBeard)
+                LabeledCheckbox(label = "Mata", state = showEyes)
             }
         }
     }
