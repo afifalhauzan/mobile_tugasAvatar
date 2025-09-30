@@ -67,7 +67,7 @@ fun FaceAvatarScreen() {
                 Image(
                     painter = painterResource(id = R.drawable.face_0000),
                     contentDescription = "Mouth",
-                    modifier = Modifier.offset(y = 420.dp)
+                    modifier = Modifier.offset(y = 425.dp)
                 )
             }
         }
