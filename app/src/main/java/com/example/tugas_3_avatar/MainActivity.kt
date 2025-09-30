@@ -27,10 +27,9 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(
                         modifier = Modifier
-                            .padding(innerPadding) // Apply innerPadding to the Box
+                            .padding(innerPadding)
                             .fillMaxSize()
                     ) {
-                        // FaceAvatarScreen as the main content filling the Box
                         FaceAvatarScreen()
                     }
                 }
@@ -42,7 +41,6 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewFaceAvatar() {
-    // Membungkus preview dengan Surface untuk background yang solid
     Surface(modifier = Modifier.fillMaxSize()) {
         FaceAvatarScreen()
     }
