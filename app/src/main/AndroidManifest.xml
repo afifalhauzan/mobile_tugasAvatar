@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Tugas_3_avatar"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileScreen"
+            android:exported="false"
+            android:label="@string/title_activity_profile_screen"
+            android:theme="@style/Theme.Tugas_3_avatar" />
+        <activity
+            android:name=".RegisterScreen"
+            android:exported="false"
+            android:label="@string/title_activity_register_screen"
+            android:theme="@style/Theme.Tugas_3_avatar" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false"
+            android:label="@string/title_activity_login_screen"
+            android:theme="@style/Theme.Tugas_3_avatar" />
+        <activity
             android:name=".FaceAvatarScreen"
             android:exported="false"
             android:label="@string/title_activity_face_avatar_screen"

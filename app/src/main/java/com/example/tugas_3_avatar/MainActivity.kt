@@ -1,6 +1,9 @@
 package com.example.tugas_3_avatar
 
 import FaceAvatarScreen
+import LoginScreen
+import ProfileScreen
+import RegistrationScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.tugas_3_avatar.ui.theme.Tugas_3_avatarTheme
 
 
@@ -30,7 +36,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding)
                             .fillMaxSize()
                     ) {
-                        FaceAvatarScreen()
+                        AppNavigation()
                     }
                 }
             }
@@ -40,8 +46,21 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreviewFaceAvatar() {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        FaceAvatarScreen()
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "login") {
+        composable("login") {
+            LoginScreen(navController = navController)
+        }
+        composable("registration") {
+            RegistrationScreen(navController = navController)
+        }
+        composable("profile") {
+            ProfileScreen(navController = navController)
+        }
+        composable("avatar") {
+            FaceAvatarScreen(navController = navController)
+        }
     }
 }
