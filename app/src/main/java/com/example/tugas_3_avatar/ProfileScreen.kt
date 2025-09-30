@@ -8,9 +8,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import android.content.Intent
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun ProfileScreen(navController: NavController) {
+fun ProfileScreen(navController: NavController, viewModel: UserViewModel) {
     val context = LocalContext.current
 
     Column(
@@ -19,6 +20,17 @@ fun ProfileScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Profil Pengguna", style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(32.dp))
+
+        // Tampilkan data dari ViewModel
+        Text("Nama:")
+        Text(viewModel.name, fontSize = 20.sp) // Mengambil nama dari ViewModel
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text("Email:")
+        Text(viewModel.email, fontSize = 20.sp) // Mengambil email dari ViewModel
+
         Spacer(modifier = Modifier.height(32.dp))
 
         Button(onClick = {

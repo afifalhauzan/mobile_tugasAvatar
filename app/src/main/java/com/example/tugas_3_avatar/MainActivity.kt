@@ -4,6 +4,7 @@ import FaceAvatarScreen
 import LoginScreen
 import ProfileScreen
 import RegistrationScreen
+import UserViewModel
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -48,16 +50,20 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val userViewModel: UserViewModel = viewModel()
 
     NavHost(navController = navController, startDestination = "login") {
         composable("login") {
-            LoginScreen(navController = navController)
+            // Teruskan ViewModel ke LoginScreen
+            LoginScreen(navController = navController, viewModel = userViewModel)
         }
         composable("registration") {
-            RegistrationScreen(navController = navController)
+            // Teruskan ViewModel ke RegistrationScreen
+            RegistrationScreen(navController = navController, viewModel = userViewModel)
         }
         composable("profile") {
-            ProfileScreen(navController = navController)
+            // Teruskan ViewModel ke ProfileScreen
+            ProfileScreen(navController = navController, viewModel = userViewModel)
         }
         composable("avatar") {
             FaceAvatarScreen(navController = navController)

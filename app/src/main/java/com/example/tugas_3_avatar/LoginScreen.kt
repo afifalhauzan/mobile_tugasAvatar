@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: UserViewModel) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -26,11 +26,12 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            // "Login-ok" -> Navigasi ke Profil
-            // Untuk membersihkan stack agar tidak bisa kembali ke login,
-            // kita gunakan popUpTo("login") { inclusive = true }
-            navController.navigate("profile") {
-                popUpTo("login") { inclusive = true }
+            // Panggil fungsi login di ViewModel untuk validasi
+            val loginSuccess = viewModel.attemptLogin(email, password)
+            if (loginSuccess) {
+                navController.navigate("profile") {
+                    popUpTo("login") { inclusive = true }
+                }
             }
         }) {
             Text("Login")
